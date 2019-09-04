@@ -1,0 +1,88 @@
+int w = 700;
+int h = 600;
+
+Paddle paddle = new Paddle();
+Ball ball = new Ball();
+
+float score;
+
+int n = 50;
+Brick[] bricks = new Brick[n];
+
+boolean isPlaying;
+boolean shouldUpdate;
+boolean showWinScreen;
+
+void setup(){
+  size(700,600);
+   frameRate(60);
+  for(int i = 0;i<bricks.length;i++){
+    bricks[i] = new Brick();
+    
+  }
+  
+}
+
+void draw(){
+  
+  if(ball.y == 600){
+      
+      score++;
+      
+    }
+  background(0);
+  
+   
+  if(keyPressed){
+    if(key == 'a' || key == 'A'){
+      paddle.x = paddle.x-paddle.speed;  
+    }
+    if(key == 'd' || key== 'D'){
+      paddle.x = paddle.x+paddle.speed;
+    }   
+    if(key == 'p' || key== 'P'){
+      isPlaying = true;
+      shouldUpdate = true;
+    }   
+    if(key == 'l' || key== 'L'){
+      shouldUpdate = false;
+      isPlaying = false;
+      showWinScreen = true;
+    }   
+    
+
+  }
+  
+    
+  if(isPlaying == true){
+  for(int i = 0; i<2; i++){
+    ball.x = ball.x+ball.speedx;
+    ball.y = ball.y +ball.speedy;
+  }
+  
+  //BRICKS
+  
+  for(int i = 0;i<bricks.length;i++){
+   bricks[i].checkMeets();
+    
+  }
+  
+  if(bricks.length == 0){
+    n = 50;
+  }
+  
+    paddle.checkEdges();
+    
+    ball.checkEdges();
+
+    ball.update();
+    
+    paddle.show();
+    ball.show();
+
+  
+  
+  }
+  
+  
+}
