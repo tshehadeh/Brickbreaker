@@ -1,0 +1,37 @@
+class Brick{
+  float x;
+  float y;
+  float w;
+  
+  
+  Brick(){
+    
+    x = random(50,550);
+    y = random(50,400);
+    w = 30;
+    
+    
+  }
+  void checkMeets(){
+    
+  for(int i = 0;i<bricks.length; i++){
+    if(ball.y<bricks[i].y &&
+     ball.y> bricks[i].y - ball.r &&
+     ball.x > bricks[i].x - ball.r &&
+     ball.x < bricks[i].x+bricks[i].w){
+       bricks[i].x=800;
+       bricks[i].y = 800;
+       ball.speedy = -ball.speedy;
+     }
+    bricks[i].show();    
+  }
+    
+  }
+  void show(){
+    rectMode(CENTER);
+    rect(x,y,w,w);
+    
+  }
+  
+  
+}
