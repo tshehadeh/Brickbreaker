@@ -1,0 +1,45 @@
+class Ball{
+  
+  float x;
+  float y;
+  float r;
+  float speedx = 5;
+  float speedy = 5;
+  Ball(){
+    
+    x = 300;
+    y = 300;
+    r = 25;
+    speedx  =1.5;
+    speedy  =1.5;  
+  }
+  
+  void update(){
+    
+  }
+  
+  void checkEdges(){
+  if(ball.x+25 == width || ball.x == 0){
+    ball.speedx = -ball.speedx;
+    }
+   if(ball.y == 0 || ball.y == height){
+    ball.speedy = -ball.speedy;  
+    }
+    if(ball.y<paddle.y &&
+     ball.y> paddle.y  - ball.r &&
+     ball.x > paddle.x - ball.r &&
+     ball.x < paddle.x + paddle.w){
+       ball.speedy = - ball.speedy;
+    
+     }
+    
+  }
+    
+  void show(){
+    
+    ellipse(x,y,r,r);
+    
+    
+  }
+  
+}
